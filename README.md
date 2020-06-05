@@ -1,5 +1,4 @@
 # Racer
-[Github Repo](https://github.com/elumixor/racer)
 
 
 #### Main Concept

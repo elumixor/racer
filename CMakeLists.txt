@@ -3,4 +3,4 @@ project(racer C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(racer main.c)
+add_executable(racer main.c change_me.c)
