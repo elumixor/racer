@@ -5,6 +5,8 @@
 
 Player is controlling a car and has to evade obstacles on its path.
 
+![Game View](./docs/images/game_view.png)
+
 
 
 #### Vision
@@ -96,6 +98,8 @@ We will limit ourselves to a total of 4 types of obstacles:
    2. Switches between initial and adjusting line, thus never occupying the third line.
    3. Bounces between lines, e.g.: *bottom, middle, top, middle, bottom, middle, ...*
 
+Obstacles and cars vary in shape, cars also have different speeds.
+
 Obstacles will spawn randomly, when the previous obstacle is out of view. First obstacle spawn immediately at the game start.
 
 
@@ -118,3 +122,12 @@ There are three different cars, that differ in size. The bigger the car, the fas
 
 Input is received from the console, via `getch()`. `w` `a` `s` `d` `Enter` keys are supported, with alternative key bindings: `←` `→` `↓` `↑`.
 
+
+
+#### Concept images
+
+![manus](.\docs\images\menus.png)
+
+![obstacles](.\docs\images\obstacles.png)
+
+![colored](.\docs\images\colored.png)
