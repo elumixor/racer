@@ -3,18 +3,39 @@
 //
 
 #include "scenes.h"
-#include "../scenes/main_menu/MainMenuScene.h"
+#include "main_menu.h"
+#include "car_selection.h"
+#include "track.h"
+#include "game_over.h"
 
-scenes::Scene* scenes::current = nullptr;
+scenes::Scene *scene::current = nullptr;
 
-namespace scenes {
+namespace scene {
     template<>
-    MainMenuScene *get<MainMenuScene>() {
-        static MainMenuScene instance = MainMenuScene();
+    scenes::MainMenu *get<scenes::MainMenu>() {
+        static scenes::MainMenu instance = scenes::MainMenu();
         return &instance;
     }
 
-    void change_scene(Scene *new_scene) {
+    template<>
+    scenes::CarSelection *get<scenes::CarSelection>() {
+        static scenes::CarSelection instance = scenes::CarSelection();
+        return &instance;
+    }
+
+    template<>
+    scenes::Track *get<scenes::Track>() {
+        static scenes::Track instance = scenes::Track();
+        return &instance;
+    }
+
+    template<>
+    scenes::GameOver *get<scenes::GameOver>() {
+        static scenes::GameOver instance = scenes::GameOver();
+        return &instance;
+    }
+
+    void change(scenes::Scene *new_scene) {
         if (current != nullptr) {
             current->on_destroy();
         }

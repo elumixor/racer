@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         application::pull_events();
     }
 
-    application::exit();
+    application::on_exit();
 
     return 0;
 }

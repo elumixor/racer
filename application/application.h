@@ -17,5 +17,5 @@ namespace application {
     void draw_frame();
     void pull_events();
 
-    void exit();
+    void on_exit();
 }

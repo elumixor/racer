@@ -9,20 +9,23 @@
 bool application::should_exit = false;
 
 void application::initialize() {
-    auto starting_scene = (scenes::Scene *) scenes::get<scenes::StartingScene>();
-    scenes::change_scene(starting_scene);
+    auto starting_scene = (scenes::Scene *) scene::get<scene::StartingScene>();
+    scene::change(starting_scene);
 }
 
 void application::process_logic() {
-    scenes::current->on_update();
+    scene::current->on_update();
 }
+
 void application::draw_frame() {
 
 }
+
 void application::pull_events() {
     // if key pressed, assign to input
     input::update();
 }
-void application::exit() {
+
+void application::on_exit() {
 
 }

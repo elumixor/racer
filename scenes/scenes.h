@@ -11,26 +11,27 @@ namespace scenes {
 
     class Scene;
 
-    class MainMenuScene;
+    class MainMenu;
 
-    class CarSelectionScene;
+    class CarSelection;
 
-    class TrackScene;
+    class Track;
 
-    class GameOverScene;
+    class GameOver;
 
+}
+namespace scene {
     template<typename T>
     T *get();
 
-    void change_scene(Scene *);
+    void change(scenes::Scene *);
 
-    extern Scene* current;
+    extern scenes::Scene *current;
 
-    using StartingScene = MainMenuScene;
+    using StartingScene = scenes::MainMenu;
 }
 
 class scenes::Scene : public Behaviour {
-
 };
 
 #endif //RACER_SCENES_H

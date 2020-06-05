@@ -8,7 +8,9 @@ add_executable(racer
         behaviour.h behaviour.cpp
         output/printing.cpp output/printing.h
         common/types.h
-        scenes/main_menu/MainMenuScene.cpp scenes/main_menu/MainMenuScene.h
+        scenes/main_menu.cpp scenes/main_menu.h
+        scenes/car_selection.cpp scenes/car_selection.h
         scenes/scenes.cpp scenes/scenes.h
         application/application.cpp application/application.h
-        input/input.h input/input.cpp)
+        input/input.h input/input.cpp
+        scenes/track.cpp scenes/track.h scenes/game_over.cpp scenes/game_over.h)
