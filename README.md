@@ -126,8 +126,8 @@ Input is received from the console, via `getch()`. `w` `a` `s` `d` `Enter` keys 
 
 #### Concept images
 
-![manus](.\docs\images\menus.png)
+![menus](./docs/images/menus.png)
 
-![obstacles](.\docs\images\obstacles.png)
+![obstacles](./docs/images/obstacles.png)
 
-![colored](.\docs\images\colored.png)
+![colored](./docs/images/colored.png)
