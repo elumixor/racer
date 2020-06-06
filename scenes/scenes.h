@@ -5,7 +5,7 @@
 #ifndef RACER_SCENES_H
 #define RACER_SCENES_H
 
-#include "../behaviour.h"
+#include "../behaviour/behaviour.h"
 
 namespace scenes {
 

@@ -19,4 +19,5 @@ namespace input {
     void update();
 }
 
+
 #endif //RACER_INPUT_H

@@ -5,7 +5,6 @@
 #ifndef RACER_PRINTING_H
 #define RACER_PRINTING_H
 
-#include "../common/types.h"
 #include <string>
 
 //template<typename T>

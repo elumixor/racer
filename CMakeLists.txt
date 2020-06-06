@@ -5,12 +5,12 @@ project(racer CXX)
 
 add_executable(racer
         main.cpp
-        behaviour.h behaviour.cpp
+        behaviour/behaviour.h behaviour/behaviour.cpp
         output/printing.cpp output/printing.h
-        common/types.h
         scenes/main_menu.cpp scenes/main_menu.h
         scenes/car_selection.cpp scenes/car_selection.h
         scenes/scenes.cpp scenes/scenes.h
         application/application.cpp application/application.h
-        input/input.h input/input.cpp
-        scenes/track.cpp scenes/track.h scenes/game_over.cpp scenes/game_over.h)
+        io/input.h io/input.cpp
+        scenes/track.cpp scenes/track.h scenes/game_over.cpp scenes/game_over.h
+        renderer/renderer.cpp renderer/renderer.h io/screen.cpp io/screen.h renderer/graphics/graphics.cpp renderer/graphics/graphics.h)

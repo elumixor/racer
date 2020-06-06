@@ -3,7 +3,7 @@
 //
 
 #include "main_menu.h"
-#include "../input/input.h"
+#include "../io/input.h"
 #include "../application/application.h"
 
 void scenes::MainMenu::on_update() {
