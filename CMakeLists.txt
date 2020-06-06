@@ -10,8 +10,8 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 
 SET(MZAPO
-        lib/include/mzapo_parlcd.h renderer/mzapo/mzapo_parlcd.c
-        lib/include/mzapo_phys.h renderer/mzapo/mzapo_phys.c
+        lib/include/mzapo_parlcd.h src/renderer/mzapo/mzapo_parlcd.c
+        lib/include/mzapo_phys.h src/renderer/mzapo/mzapo_phys.c
         lib/include/mzapo_regs.h
         )
 
@@ -25,21 +25,21 @@ SET(LIB_HEADERS
         lib/include/mzapo_parlcd.h)
 
 add_executable(racer
-        ${OBJS}
-        main.cpp
-        behaviour/behaviour.h behaviour/behaviour.cpp
-        output/printing.cpp output/printing.h
-        scenes/main_menu.cpp scenes/main_menu.h
-        scenes/car_selection.cpp scenes/car_selection.h
-        scenes/scenes.cpp scenes/scenes.h
-        application/application.cpp application/application.h
-        io/input.h io/input.cpp
-        scenes/track.cpp scenes/track.h scenes/game_over.cpp scenes/game_over.h
-        renderer/renderer.cpp renderer/renderer.h
-        io/screen.cpp io/screen.h
-        renderer/graphics/graphics.cpp renderer/graphics/graphics.h
-        io/async_input.cpp io/async_input.h
-        exceptions/exceptions.h exceptions/exceptions.cpp
+        ${OBJS} ${LIB_HEADERS}
+        src/main.cpp
+        src/behaviour/behaviour.h src/behaviour/behaviour.cpp
+        src/output/printing.cpp src/output/printing.h
+        src/scenes/main_menu.cpp src/scenes/main_menu.h
+        src/scenes/car_selection.cpp src/scenes/car_selection.h
+        src/scenes/scenes.cpp src/scenes/scenes.h
+        src/application/application.cpp src/application/application.h
+        src/io/input.h src/io/input.cpp
+        src/scenes/track.cpp src/scenes/track.h src/scenes/game_over.cpp src/scenes/game_over.h
+        src/renderer/renderer.cpp src/renderer/renderer.h
+        src/io/screen.cpp src/io/screen.h
+        src/renderer/graphics/graphics.cpp src/renderer/graphics/graphics.h
+        src/io/async_input.cpp src/io/async_input.h
+        src/exceptions/exceptions.h src/exceptions/exceptions.cpp
         )
 
 target_include_directories(racer PRIVATE lib/include)
@@ -61,7 +61,7 @@ string(SUBSTRING ${target_dir} 0 ${len} target_dir)
 
 set(target_dir "/tmp/${target_dir}")
 
-execute_process(COMMAND pwd OUTPUT_VARIABLE output)
+execute_process(COMMAND pwd OUTPUT_VARIABLE src/output)
 
 set(ssh_options "-i /opt/zynq/ssh-connect/mzapo-root-key")
 set(address "root@${target_ip}")

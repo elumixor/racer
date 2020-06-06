@@ -14,6 +14,7 @@ namespace renderer {
     void clear_framebuffer(const Color &color = Color::clear);
     void set_rect(const Rect &rect, const Color &color);
     void set_text(const char* string, const Rect & rect);
-    void render();
+    void render_frame();
+    void on_exit();
 }
 #endif //RACER_RENDERER_H

@@ -23,7 +23,8 @@ void application::process_logic() {
 }
 
 void application::draw_frame() {
-    renderer::render();
+    renderer::clear_framebuffer(Color(1.f, 1.f, 1.f));
+    renderer::render_frame();
 }
 
 void application::pull_events() {
@@ -32,5 +33,5 @@ void application::pull_events() {
 }
 
 void application::on_exit() {
-
+    renderer::on_exit();
 }

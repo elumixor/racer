@@ -6,14 +6,10 @@
 #include "../io/screen.h"
 #include "../output/printing.h"
 
-#include "../lib/include/mzapo_regs.h"
-#include "../lib/include/mzapo_parlcd.h"
-#include "../lib/include/mzapo_phys.h"
+#include "mzapo_regs.h"
+#include "mzapo_parlcd.h"
+#include "mzapo_phys.h"
 
-// unsigned short: 16 bits
-// R: 5 (15..11)
-// G: 6 (10..5)
-// B: 5 (4..0)
 t_color *framebuffer;
 
 void renderer::set_pixel(int x, int y, const Color &color) {
@@ -31,7 +27,7 @@ void renderer::set_rect(const Rect &rect, const Color &color) {
 
 void renderer::clear_framebuffer(const Color &color) {
     for (int y = 0; y < screen::height; y++)
-        for (int x = 0; x < screen::height; x++)
+        for (int x = 0; x < screen::width; x++)
             set_pixel(x, y, color);
 }
 unsigned char *parlcd_mem_base;
@@ -42,10 +38,14 @@ void renderer::initialize() {
 
     parlcd_mem_base = (unsigned char *) map_phys_address(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE, 0);
 }
-void renderer::render() {
-    // this will contain system-specific stuff
+void renderer::render_frame() {
     parlcd_write_cmd(parlcd_mem_base, 0x2c);
     for (int i = 0; i < 320 * 480; i++)
         parlcd_write_data(parlcd_mem_base, framebuffer[i]);
+}
+void renderer::on_exit() {
+    clear_framebuffer();
+    render_frame();
+    delete [] framebuffer;
 }
 
