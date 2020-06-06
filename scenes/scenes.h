@@ -9,7 +9,8 @@
 
 namespace scenes {
 
-    class Scene;
+    class Scene : public Behaviour {
+    };
 
     class MainMenu;
 
@@ -20,18 +21,23 @@ namespace scenes {
     class GameOver;
 
 }
+
 namespace scene {
     template<typename T>
     T *get();
 
-    void change(scenes::Scene *);
-
     extern scenes::Scene *current;
+
+    void load(scenes::Scene *);
+
+    template<typename T>
+    void load() {
+        auto instance = (scenes::Scene *) scene::get<T>();
+        load(instance);
+    }
 
     using StartingScene = scenes::MainMenu;
 }
 
-class scenes::Scene : public Behaviour {
-};
 
 #endif //RACER_SCENES_H

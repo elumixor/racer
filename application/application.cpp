@@ -12,9 +12,10 @@ bool application::should_exit = false;
 
 void application::initialize() {
     renderer::initialize();
+    input::initialize();
 
     auto starting_scene = (scenes::Scene *) scene::get<scene::StartingScene>();
-    scene::change(starting_scene);
+    scene::load(starting_scene);
 }
 
 void application::process_logic() {

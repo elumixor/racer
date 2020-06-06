@@ -35,7 +35,7 @@ namespace scene {
         return &instance;
     }
 
-    void change(scenes::Scene *new_scene) {
+    void load(scenes::Scene *new_scene) {
         if (current != nullptr) {
             current->on_destroy();
         }

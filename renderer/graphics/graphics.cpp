@@ -3,3 +3,5 @@
 //
 
 #include "graphics.h"
+
+Color Color::clear = Color();

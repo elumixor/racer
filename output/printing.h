@@ -10,6 +10,8 @@
 //template<typename T>
 //string to_string(const T &value);
 
+void print(const char *value);
+
 template<typename T>
 void print(const T &value) {
     printf("%s\n", std::to_string(value).c_str());

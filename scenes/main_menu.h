@@ -10,6 +10,7 @@
 
 namespace scenes {
     class MainMenu : public Scene {
+        void on_init() override;
         void on_update() override;
     };
 }

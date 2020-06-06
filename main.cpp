@@ -1,10 +1,8 @@
 //
 // Created by vlado on 4/6/20.
 //
-#include "application/application.h"
-#include <conio.h>
-#include <cstdio>
 
+#include "application/application.h"
 
 int main(int argc, char **argv) {
     application::initialize();
@@ -17,6 +15,5 @@ int main(int argc, char **argv) {
     }
 
     application::on_exit();
-
     return 0;
 }

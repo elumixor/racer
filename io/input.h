@@ -17,6 +17,7 @@ namespace input {
 
     bool get_key(keys key);
     void update();
+    void initialize();
 }
 
 

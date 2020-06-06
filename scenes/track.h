@@ -10,7 +10,7 @@
 
 namespace scenes {
     class Track : public scenes::Scene {
-
+        void on_update() override;
     };
 }
 

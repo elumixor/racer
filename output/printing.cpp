@@ -14,3 +14,6 @@
 //std::string to_string<int>(const int &value) {
 //    return std::to_string(value);
 //}
+void print(const char *value) {
+    printf("%s\n", value);
+}
