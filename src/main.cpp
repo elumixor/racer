@@ -2,6 +2,8 @@
 // Created by vlado on 4/6/20.
 //
 
+#include <textures/textures.h>
+#include <printing.h>
 #include "application/application.h"
 
 int main(int argc, char **argv) {

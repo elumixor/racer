@@ -129,3 +129,6 @@ fabric.properties
 # Custom scripts
 sensitive
 *.sh
+
+# Generated binary textures
+textures/binary

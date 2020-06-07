@@ -10,11 +10,13 @@
 //template<typename T>
 //string to_string(const T &value);
 
-void print(const char *value);
+inline void print(const char *value) {
+    printf("%s\n\r", value);
+}
 
 template<typename T>
 void print(const T &value) {
-    printf("%s\n", std::to_string(value).c_str());
+    printf("%s\n\r", std::to_string(value).c_str());
 }
 
 #endif //RACER_PRINTING_H

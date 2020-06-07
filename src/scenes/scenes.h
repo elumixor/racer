@@ -5,11 +5,11 @@
 #ifndef RACER_SCENES_H
 #define RACER_SCENES_H
 
-#include "../behaviour/behaviour.h"
+#include <component.h>
 
 namespace scenes {
 
-    class Scene : public Behaviour {
+    class Scene : public Component {
     };
 
     class MainMenu;

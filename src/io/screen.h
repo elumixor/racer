@@ -6,8 +6,8 @@
 #define RACER_SCREEN_H
 
 namespace screen {
-    const int height = 320;
-    const int width = 480;
+    constexpr auto height = 320;
+    constexpr auto width = 480;
 }
 
 #endif //RACER_SCREEN_H
