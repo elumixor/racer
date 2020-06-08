@@ -4,6 +4,8 @@
 
 #include <renderer/renderer.h>
 #include <textures/textures.h>
+#include <cstdlib>
+#include <ctime>
 #include "application.h"
 #include "../scenes/scenes.h"
 #include "../io/input.h"
@@ -12,6 +14,9 @@ bool application::should_exit = false;
 
 
 void application::initialize() {
+    // seed random generator https://stackoverflow.com/a/13446015/4932128
+    srand((unsigned) time(nullptr));
+
     renderer::initialize();
     input::initialize();
     textures::load();

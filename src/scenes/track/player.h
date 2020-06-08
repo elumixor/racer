@@ -13,15 +13,16 @@
 class Player : public Component {
     float acceleration;
     const Texture *texture;
-    int line{1};
+    int line{game_data::PLAYER_STARTING_LINE};
 
     void render();
 public:
-    float speed{game_data::CAR_BASE_SPEED};
+    float speed;
 
     explicit inline Player(game_data::CarType car_type) :
             acceleration{game_data::get_acceleration(car_type)},
-            texture{game_data::get_player_car(car_type)} {}
+            texture{game_data::get_texture(car_type)},
+            speed{game_data::get_speed(car_type)}{}
 
     void on_update() override;
 };

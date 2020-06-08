@@ -47,6 +47,10 @@ def rect2bytes(rect):
     return struct.pack('iiii', *rect)
 
 
+from pathlib import Path
+
+Path("binary").mkdir(parents=True, exist_ok=True)
+
 with open("textures.yaml", 'r') as stream:
     data_loaded = yaml.safe_load(stream)
     colors = {name: to_16bit(color) for name, color in data_loaded['colors'].items()}

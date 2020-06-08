@@ -13,7 +13,7 @@ void Player::on_update() {
         ++line;
     }
 
-    speed += 0.1 * acceleration / sqrt(speed);
+    speed += 0.1f * acceleration / sqrt(speed);
     render();
 }
 

@@ -12,10 +12,10 @@ const Texture *textures::player_fast;
 const Texture *textures::rival_slow;
 const Texture *textures::rival_medium;
 const Texture *textures::rival_fast;
-const Texture *textures::obstacle_small;
-const Texture *textures::obstacle_big;
-const Texture *textures::obstacle_wide_small;
-const Texture *textures::obstacle_wide_big;
+const Texture *textures::box_small;
+const Texture *textures::box_big;
+const Texture *textures::box_wide_small;
+const Texture *textures::box_wide_big;
 
 const Texture *from_bitmap(const char *file_path) {
     // todo: create .tex files
@@ -62,10 +62,10 @@ void textures::load() {
     rival_slow = from_bitmap("./textures/rival_slow.texture");
     rival_medium = from_bitmap("./textures/rival_medium.texture");
     rival_fast = from_bitmap("./textures/rival_fast.texture");
-    obstacle_small = from_bitmap("./textures/obstacle_small.texture");
-    obstacle_big = from_bitmap("./textures/obstacle_big.texture");
-    obstacle_wide_small = from_bitmap("./textures/obstacle_wide_small.texture");
-    obstacle_wide_big = from_bitmap("./textures/obstacle_wide_big.texture");
+    box_small = from_bitmap("./textures/box_small.texture");
+    box_big = from_bitmap("./textures/box_big.texture");
+    box_wide_small = from_bitmap("./textures/box_wide_small.texture");
+    box_wide_big = from_bitmap("./textures/box_wide_big.texture");
 }
 void textures::free() {
     // here we free all the textures
@@ -75,9 +75,9 @@ void textures::free() {
     delete rival_slow;
     delete rival_medium;
     delete rival_fast;
-    delete obstacle_small;
-    delete obstacle_big;
-    delete obstacle_wide_small;
-    delete obstacle_wide_big;
+    delete box_small;
+    delete box_big;
+    delete box_wide_small;
+    delete box_wide_big;
 }
 

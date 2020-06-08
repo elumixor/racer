@@ -9,23 +9,7 @@ SET(GCC_COVERAGE_LINK_FLAGS "-lrt -lpthread")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 
-SET(MZAPO
-        lib/include/mzapo_parlcd.h src/graphics/renderer/mzapo/mzapo_parlcd.c
-        lib/include/mzapo_phys.h src/graphics/renderer/mzapo/mzapo_phys.c
-        lib/include/mzapo_regs.h
-        )
-
-SET(OBJS
-        lib/compiled/mzapo_parlcd.o
-        lib/compiled/mzapo_phys.o)
-
-SET(LIB_HEADERS
-        lib/include/mzapo_regs.h
-        lib/include/mzapo_phys.h
-        lib/include/mzapo_parlcd.h)
-
-add_executable(racer
-        ${OBJS} ${LIB_HEADERS}
+SET(SRC
         src/main.cpp
         src/components/component.h src/components/component.cpp
         src/output/printing.cpp src/output/printing.h
@@ -43,15 +27,35 @@ add_executable(racer
         src/scenes/track/track_manager.cpp src/scenes/track/track_manager.h
         src/scenes/track/player.cpp src/scenes/track/player.h
         src/components/renderable.cpp src/components/renderable.h
-        src/scenes/track/obstacle.cpp src/scenes/track/obstacle.h
+        src/scenes/track/obstacles/obstacle.cpp src/scenes/track/obstacles/obstacle.h
         src/game_data/game_data.cpp src/game_data/game_data.h
         src/graphics/textures/textures.cpp src/graphics/textures/textures.h
         src/math/math.cpp src/math/math.h
+        src/scenes/track/obstacles/box_obstacle.cpp src/scenes/track/obstacles/box_obstacle.h
+        src/scenes/track/obstacles/rival.cpp src/scenes/track/obstacles/rival.h)
+
+SET(MZAPO
+        lib/include/mzapo_parlcd.h src/graphics/renderer/mzapo/mzapo_parlcd.c
+        lib/include/mzapo_phys.h src/graphics/renderer/mzapo/mzapo_phys.c
+        lib/include/mzapo_regs.h
         )
+
+SET(OBJS
+        lib/compiled/mzapo_parlcd.o
+        lib/compiled/mzapo_phys.o)
+
+SET(LIB_HEADERS
+        lib/include/mzapo_regs.h
+        lib/include/mzapo_phys.h
+        lib/include/mzapo_parlcd.h )
+
+add_executable(racer
+        ${OBJS} ${LIB_HEADERS}
+        ${SRC})
 
 target_include_directories(racer PRIVATE
         lib/include
-        src/components src/exceptions src/output src/graphics textures src/math)
+        src/components src/exceptions src/output src/graphics textures src/math src/game_data)
 
 SET_SOURCE_FILES_PROPERTIES(
         ${OBJS}

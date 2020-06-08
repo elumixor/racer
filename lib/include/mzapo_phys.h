@@ -15,7 +15,7 @@
 #ifndef MZAPO_PHYS_H
 #define MZAPO_PHYS_H
 
-#include "../../../../../../Users/vlado/AppData/Local/JetBrains/CLion2020.1/.remote/postel.felk.cvut.cz_22/f95043f4-bb6c-422c-9d9b-b142eab1a45f/usr/include/x86_64-linux-gnu/sys/types.h"
+//#include "../../../../../../Users/vlado/AppData/Local/JetBrains/CLion2020.1/.remote/postel.felk.cvut.cz_22/f95043f4-bb6c-422c-9d9b-b142eab1a45f/usr/include/x86_64-linux-gnu/sys/types.h"
 
 #ifdef __cplusplus
 extern "C" {

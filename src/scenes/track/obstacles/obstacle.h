@@ -8,11 +8,14 @@
 
 #include <component.h>
 #include <graphics.h>
-#include "../game_data/game_data.h"
+#include <game_data.h>
 
 class Obstacle : public Component {
+protected:
     int line;
+public:
     float x;
+private:
     float speed;
     const Texture *texture;
     int width;
@@ -24,6 +27,7 @@ public:
 
     void on_update() override;
     bool out_of_view() const;
+    static Obstacle *from_type(game_data::ObstacleType type, float player_speed);
 };
 
 

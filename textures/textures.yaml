@@ -38,7 +38,7 @@ textures:
   rival_slow:
     black:
       [[30, 0, 20, 20],
-       [0, 60, 20, 20]]
+       [30, 60, 20, 20]]
     red:
       [[0, 20, 60, 40]]
 
@@ -62,7 +62,7 @@ textures:
     red:
       [[40, 10, 50, 60]]
 
-  obstacle_small:
+  box_small:
     red:
       [[0, 10, 10, 60],
        [10, 35, 60, 10],
@@ -72,7 +72,7 @@ textures:
        [35, 10, 10, 60],
        [70, 10, 10, 60]]
 
-  obstacle_big:
+  box_big:
     red:
       [[0, 10, 10, 60],
        [30, 10, 10, 60],
@@ -85,7 +85,7 @@ textures:
        [40, 30, 30, 10],
        [0, 70, 120, 10]]
 
-  obstacle_wide_small:
+  box_wide_small:
     red:
       [[0, 0, 60, 30],
        [0, 50, 60, 50],
@@ -94,7 +94,7 @@ textures:
       [[60, 0, 20, 100],
        [0, 120, 40, 60]]
 
-  obstacle_wide_big:
+  box_wide_big:
     red:
       [[0, 0, 60, 30],
        [20, 50, 40, 50],

@@ -16,10 +16,10 @@ namespace textures {
     extern const Texture *rival_medium;
     extern const Texture *rival_fast;
 
-    extern const Texture *obstacle_small;
-    extern const Texture *obstacle_big;
-    extern const Texture *obstacle_wide_small;
-    extern const Texture *obstacle_wide_big;
+    extern const Texture *box_small;
+    extern const Texture *box_big;
+    extern const Texture *box_wide_small;
+    extern const Texture *box_wide_big;
 
     void load();
     void free();
