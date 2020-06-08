@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <exceptions.h>
 #include "game_data.h"
 #include "textures/textures.h"
 
@@ -16,6 +17,8 @@ const Texture *game_data::get_texture(game_data::CarType car_type) {
         case game_data::CarType::fast:
             return textures::player_fast;
     }
+
+    throw InvalidArgumentException("Invalid car type");
 }
 game_data::ObstacleType game_data::get_random_obstacle_type() {
     auto r = rand() % game_data::NUM_OBSTACLE_TYPES;
@@ -38,4 +41,6 @@ const Texture *game_data::get_texture(game_data::ObstacleType obstacle_type) {
         case ObstacleType::rival_fast:
             return textures::rival_fast;
     }
+
+    throw InvalidArgumentException("Invalid obstacle type");
 }

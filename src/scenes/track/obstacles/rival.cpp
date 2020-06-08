@@ -44,8 +44,8 @@ Rival::Behaviour get_behaviour(int line) {
 }
 
 Rival::Rival(game_data::ObstacleType type, float player_speed) :
-        Obstacle{get_random_line(), 0, player_speed + get_speed(type), game_data::get_texture(type), get_width(type)},
-        l{line}, behaviour{get_behaviour(line)} {
+        Obstacle{get_random_line(), 0, player_speed + get_speed(type), game_data::get_texture(type), get_width(type),
+                 game_data::CAR_HEIGHT}, l{line}, behaviour{get_behaviour(line)} {
 }
 void Rival::on_update() {
     if (frames_from_last_change == 0) {

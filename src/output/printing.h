@@ -15,8 +15,8 @@ inline void print(const char *value) {
 }
 
 template<typename T>
-void print(const T &value) {
-    printf("%s\n\r", std::to_string(value).c_str());
+void print(const T &value, const char *end = "\n\r") {
+    printf("%s%s", std::to_string(value).c_str(), end);
 }
 
 #endif //RACER_PRINTING_H

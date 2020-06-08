@@ -17,6 +17,16 @@ void Player::on_update() {
     render();
 }
 
+Rect Player::get_collider() const {
+    auto top = game_data::LINE_MARGIN + line * game_data::LINE_SIZE;
+    auto left = game_data::LINE_MARGIN;
+    auto right = left + width;
+    auto bottom = top + game_data::CAR_HEIGHT;
+
+    return {{left,  top},
+            {right, bottom}};
+}
+
 void Player::render() {
     auto top = game_data::LINE_MARGIN + line * game_data::LINE_SIZE;
     auto left = game_data::LINE_MARGIN;

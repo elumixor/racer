@@ -6,6 +6,7 @@
 #define RACER_GAME_DATA_H
 
 #include <graphics.h>
+#include <exceptions.h>
 
 namespace game_data {
     constexpr int NUM_LINES = 3;
@@ -57,6 +58,8 @@ namespace game_data {
             case CarType::fast:
                 return CAR_SPEED_FAST;
         }
+
+        throw InvalidArgumentException("Invalid car type");
     }
 
     constexpr float get_acceleration(CarType type) {
@@ -68,15 +71,20 @@ namespace game_data {
             case CarType::fast:
                 return CAR_ACCELERATION_FAST;
         }
+
+        throw InvalidArgumentException("Invalid car type");
     }
     constexpr int get_width(CarType type) {
-        if (type == CarType::slow)
-            return CAR_WIDTH_SLOW;
+        switch (type) {
+            case CarType::slow:
+                return CAR_WIDTH_SLOW;
+            case CarType::medium:
+                return CAR_WIDTH_MEDIUM;
+            case CarType::fast:
+                return CAR_WIDTH_FAST;
+        }
 
-        if (type == CarType::medium)
-            return CAR_WIDTH_SLOW;
-
-        return CAR_WIDTH_SLOW;
+        throw InvalidArgumentException("Invalid car type");
     }
 
     enum class ObstacleType {

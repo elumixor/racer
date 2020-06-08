@@ -23,16 +23,17 @@ SET(SRC
         src/io/screen.cpp src/io/screen.h
         src/graphics/graphics.cpp src/graphics/graphics.h
         src/io/async_input.cpp src/io/async_input.h
-        src/exceptions/exceptions.h src/exceptions/exceptions.cpp
+        src/exceptions/exceptions.h
         src/scenes/track/track_manager.cpp src/scenes/track/track_manager.h
         src/scenes/track/player.cpp src/scenes/track/player.h
         src/components/renderable.cpp src/components/renderable.h
-        src/scenes/track/obstacles/obstacle.cpp src/scenes/track/obstacles/obstacle.h
         src/game_data/game_data.cpp src/game_data/game_data.h
         src/graphics/textures/textures.cpp src/graphics/textures/textures.h
         src/math/math.cpp src/math/math.h
+        src/scenes/track/obstacles/rival.cpp src/scenes/track/obstacles/rival.h
+        src/scenes/track/obstacles/obstacle.cpp src/scenes/track/obstacles/obstacle.h
         src/scenes/track/obstacles/box_obstacle.cpp src/scenes/track/obstacles/box_obstacle.h
-        src/scenes/track/obstacles/rival.cpp src/scenes/track/obstacles/rival.h)
+        )
 
 SET(MZAPO
         lib/include/mzapo_parlcd.h src/graphics/renderer/mzapo/mzapo_parlcd.c
@@ -47,15 +48,15 @@ SET(OBJS
 SET(LIB_HEADERS
         lib/include/mzapo_regs.h
         lib/include/mzapo_phys.h
-        lib/include/mzapo_parlcd.h )
+        lib/include/mzapo_parlcd.h)
 
 add_executable(racer
         ${OBJS} ${LIB_HEADERS}
         ${SRC})
 
 target_include_directories(racer PRIVATE
-        lib/include
-        src/components src/exceptions src/output src/graphics textures src/math src/game_data)
+        lib/include src/game_data
+        src/components src/exceptions src/output src/graphics src/math src/io src/graphics/textures)
 
 SET_SOURCE_FILES_PROPERTIES(
         ${OBJS}

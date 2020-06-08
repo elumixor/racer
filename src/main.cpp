@@ -3,6 +3,7 @@
 //
 
 #include "application/application.h"
+#include <game_data.h>
 
 int main(int argc, char **argv) {
     application::initialize();

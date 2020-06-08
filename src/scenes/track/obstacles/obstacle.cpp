@@ -36,3 +36,12 @@ Obstacle *Obstacle::from_type(game_data::ObstacleType type, float player_speed) 
 
     return new Rival(type, player_speed);
 }
+Rect Obstacle::get_collider() const {
+    auto top = game_data::LINE_MARGIN + line * game_data::LINE_SIZE;
+    auto left = (int) lround(x);
+    auto right = left + width;
+    auto bottom = top + height;
+
+    return {{left,  top},
+            {right, bottom}};
+}

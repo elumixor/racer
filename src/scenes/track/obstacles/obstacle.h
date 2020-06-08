@@ -19,14 +19,18 @@ private:
     float speed;
     const Texture *texture;
     int width;
+    int height;
 
     void render();
 public:
-    inline Obstacle(int line, float x, float speed, const Texture *texture, int width) :
-            line{line}, x{x}, speed{speed}, texture{texture}, width{width} {}
+    Rect get_collider() const;
+
+    inline Obstacle(int line, float x, float speed, const Texture *texture, int width, int height) :
+            line{line}, x{x}, speed{speed}, texture{texture}, width{width}, height{height} {}
 
     void on_update() override;
     bool out_of_view() const;
+
     static Obstacle *from_type(game_data::ObstacleType type, float player_speed);
 };
 

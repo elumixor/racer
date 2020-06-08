@@ -3,7 +3,6 @@
 //
 
 #include <renderer/renderer.h>
-#include <graphics.h>
 #include "track.h"
 #include "../application/application.h"
 
