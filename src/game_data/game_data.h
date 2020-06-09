@@ -44,6 +44,7 @@ namespace game_data {
     constexpr text::Style TEXT_OPTION{4, color::black, color::red};
     constexpr text::Style TEXT_OPTION_HIGHLIGHTED{4, color::black, color::white};
     constexpr text::Style TEXT_SCORE_SMALL{2, color::black, color::red};
+    constexpr text::Style TEXT_SCORE_TRACK{2, color::white, color::black};
 
     constexpr int TITLE_MARGIN_TOP = 45;
     constexpr int TITLE_MARGIN_BOTTOM = 35;

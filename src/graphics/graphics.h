@@ -45,8 +45,8 @@ using Vector = Point;
 struct Point {
     int x{0}, y{0};
 
-    inline Point() = default;
-    inline Point(int x, int y) : x{x}, y{y} {}
+    inline constexpr Point() = default;
+    inline constexpr Point(int x, int y) : x{x}, y{y} {}
 
     inline Point operator+(const Vector &translation) const { return {x + translation.x, y + translation.y}; }
 };
@@ -68,7 +68,7 @@ struct Rect {
 
     inline Rect() = default;
 
-    inline Rect(const Point &top_left, const Point &bottom_right) : top_left{top_left}, bottom_right{bottom_right} {}
+    inline constexpr Rect(const Point &top_left, const Point &bottom_right) : top_left{top_left}, bottom_right{bottom_right} {}
     inline Rect operator+(const Vector &translation) const { return {top_left + translation, bottom_right + translation}; }
 };
 

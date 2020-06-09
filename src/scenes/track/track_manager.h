@@ -15,6 +15,7 @@ class TrackManager : public Component {
 public:
     explicit TrackManager(const Player *player);
 
+    void on_init() override ;
     void on_update() override;
     void on_destroy() override;
 

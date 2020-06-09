@@ -3,6 +3,7 @@
 //
 
 #include <c++/9/cmath>
+#include <printing.h>
 #include "obstacle.h"
 #include "rival.h"
 #include "box_obstacle.h"

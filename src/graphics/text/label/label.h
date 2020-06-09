@@ -9,6 +9,7 @@
 #include <graphics.h>
 #include <text/text.h>
 #include <game_data.h>
+#include <c++/9/cstring>
 
 namespace AnchorX {
     enum AnchorX {
@@ -29,8 +30,9 @@ namespace AnchorY {
 struct Label {
     const char *string;
     text::Style style;
-    int glyph_size() const;
 
+    inline int glyph_size() const { return style.font_size * text::glyph_size; }
+    inline int width() const { return glyph_size() * strlen(string); }
 
     void render(const Point &position, AnchorX::AnchorX anchor_x = AnchorX::left, AnchorY::AnchorY anchor_y = AnchorY::top) const;
 

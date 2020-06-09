@@ -4,7 +4,6 @@
 
 #include "label.h"
 #include <text/text.h>
-#include <c++/9/cstring>
 #include <screen.h>
 
 void Label::render(const Point &position, AnchorX::AnchorX anchor_x, AnchorY::AnchorY anchor_y) const {
@@ -14,7 +13,4 @@ void Label::render(const Point &position, AnchorX::AnchorX anchor_x, AnchorY::An
 //    auto ay = anchor_y == AnchorY::top ? 0 : anchor_y == AnchorY::center ? 1 : 2;
     const Point pos{position.x - (int) (anchor_x * width / 2), position.y - (int) (anchor_y * height / 2)};
     text::render(string, pos, style);
-}
-int Label::glyph_size() const {
-    return style.font_size * text::glyph_size;
 }

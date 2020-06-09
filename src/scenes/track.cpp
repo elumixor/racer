@@ -3,11 +3,21 @@
 //
 
 #include <renderer/renderer.h>
+#include <c++/9/cstdio>
+#include <screen.h>
 #include "track.h"
 #include "../application/application.h"
 
+constexpr Rect top_rect{{0,             0},
+                        {screen::width, game_data::LINE_MARGIN}};
+constexpr Rect bottom_rect{{0,             screen::height - game_data::LINE_MARGIN},
+                           {screen::width, screen::height}};
+
 void scenes::Track::on_update() {
     renderer::clear_framebuffer(game_data::BACKGROUND_COLOR);
+
+    renderer::set_rect(top_rect, color::black);
+    renderer::set_rect(bottom_rect, color::black);
 
     player->on_update();
     track_manager->on_update();
@@ -21,8 +31,6 @@ void scenes::Track::on_init() {
 
     player->on_init();
     track_manager->on_init();
-
-    game_data::score = 0;
 }
 
 void scenes::Track::on_destroy() {
