@@ -2,10 +2,15 @@
 // Created by vlado on 5/6/20.
 //
 
-#include <renderer/renderer.h>
-#include <textures/textures.h>
 #include <cstdlib>
 #include <ctime>
+
+#include <renderer/renderer.h>
+#include <textures/textures.h>
+#include <text/text.h>
+#include <c++/9/cstdlib>
+#include <c++/9/cstdio>
+
 #include "application.h"
 #include "../scenes/scenes.h"
 #include "../io/input.h"
@@ -19,7 +24,8 @@ void application::initialize() {
 
     renderer::initialize();
     input::initialize();
-    textures::load();
+    textures::initialize();
+    text::initialize();
 
     auto starting_scene = (scenes::Scene *) scene::get<scene::StartingScene>();
     scene::load(starting_scene);
@@ -44,4 +50,5 @@ void application::pull_events() {
 void application::on_exit() {
     renderer::on_exit();
     textures::free();
+    text::free();
 }

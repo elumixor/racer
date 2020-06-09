@@ -64,5 +64,5 @@ with open("textures.yaml", 'r') as stream:
                 b += struct.pack('H', colors[color])
                 b += rect2bytes(rect)
 
-        with open(f"binary/{name}.texture", "wb") as f:
+        with open(f"binary/{name}", "wb") as f:
             f.write(b)

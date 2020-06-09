@@ -27,7 +27,16 @@ namespace color {
                                         (static_cast<color::type>(r * RED_MAX) << (BLUE_BITS + GREEN_BITS)));
     }
 
-    constexpr type clear = 0u;
+    constexpr type white = rgb(1, 1, 1);
+    constexpr type black = rgb(0, 0, 0);
+    constexpr type red = rgb(1, 0, 0);
+    constexpr type green = rgb(0, 1, 0);
+    constexpr type blue = rgb(0, 0, 1);
+
+    constexpr type clear = black;
+    constexpr color::type saturate(color::type color, float factor) {
+        return static_cast<color::type>(static_cast<float>(color) * factor);
+    }
 }
 
 struct Point;
@@ -74,5 +83,7 @@ public:
 
     ~Texture();
 };
+
+void render_text(const char *string, const Point &top_left, int size = 1);
 
 #endif //RACER_GRAPHICS_H

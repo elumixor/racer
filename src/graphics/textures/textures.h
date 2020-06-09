@@ -21,7 +21,7 @@ namespace textures {
     extern const Texture *box_wide_small;
     extern const Texture *box_wide_big;
 
-    void load();
+    void initialize();
     void free();
 }
 

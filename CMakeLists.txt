@@ -33,6 +33,7 @@ SET(SRC
         src/scenes/track/obstacles/rival.cpp src/scenes/track/obstacles/rival.h
         src/scenes/track/obstacles/obstacle.cpp src/scenes/track/obstacles/obstacle.h
         src/scenes/track/obstacles/box_obstacle.cpp src/scenes/track/obstacles/box_obstacle.h
+        src/graphics/text/text.cpp src/graphics/text/text.h
         )
 
 SET(MZAPO
@@ -81,9 +82,12 @@ set(address "root@${target_ip}")
 add_custom_command(TARGET racer POST_BUILD
         COMMAND echo "Built. Transferring to device."
         # Do some magic
-        COMMAND ssh -i /opt/zynq/ssh-connect/mzapo-root-key -t ${address} killall gdbserver 1>/dev/null 2>/dev/null || true && mkdir -p ${target_dir}
+        COMMAND ssh -i /opt/zynq/ssh-connect/mzapo-root-key -t ${address} killall gdbserver 1>/dev/null 2>/dev/null || true
+        COMMAND ssh -i /opt/zynq/ssh-connect/mzapo-root-key ${address} mkdir -p ${target_dir}
         # Copy executable
         COMMAND scp -i /opt/zynq/ssh-connect/mzapo-root-key ${PROJECT_NAME} ${address}:${target_dir}/${PROJECT_NAME}
         # Copy dependent textures
         COMMAND scp -i /opt/zynq/ssh-connect/mzapo-root-key -r ${CMAKE_SOURCE_DIR}/textures/binary ${address}:${target_dir}/textures
+        # Copy dependent glyphs
+        COMMAND scp -i /opt/zynq/ssh-connect/mzapo-root-key -r ${CMAKE_SOURCE_DIR}/textures/fonts/binary ${address}:${target_dir}/textures/glyphs
         COMMAND echo "Transfer successful.")

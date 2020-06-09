@@ -18,11 +18,7 @@ const Texture *textures::box_wide_small;
 const Texture *textures::box_wide_big;
 
 const Texture *from_bitmap(const char *file_path) {
-    // todo: create .tex files
-    // todo: read from binary files: heigth, width, pixels
-//    unsigned char buffer[10];
-    FILE *ptr;
-    ptr = fopen(file_path, "rb");  // r for read, b for binary
+    auto ptr = fopen(file_path, "rb");
 
     unsigned char num_rectanles;
     int top, left, height, width;
@@ -49,23 +45,22 @@ const Texture *from_bitmap(const char *file_path) {
     }
 
     auto t = new Texture(rectangles, colors, num_rectanles);
-
     fclose(ptr);
     return t;
 }
 
-void textures::load() {
-    // here we load all textures (not that many) from files into memory
-    player_slow = from_bitmap("./textures/player_slow.texture");
-    player_medium = from_bitmap("./textures/player_medium.texture");
-    player_fast = from_bitmap("./textures/player_fast.texture");
-    rival_slow = from_bitmap("./textures/rival_slow.texture");
-    rival_medium = from_bitmap("./textures/rival_medium.texture");
-    rival_fast = from_bitmap("./textures/rival_fast.texture");
-    box_small = from_bitmap("./textures/box_small.texture");
-    box_big = from_bitmap("./textures/box_big.texture");
-    box_wide_small = from_bitmap("./textures/box_wide_small.texture");
-    box_wide_big = from_bitmap("./textures/box_wide_big.texture");
+void textures::initialize() {
+    // here we initialize all textures (not that many) from files into memory
+    player_slow = from_bitmap("./textures/player_slow");
+    player_medium = from_bitmap("./textures/player_medium");
+    player_fast = from_bitmap("./textures/player_fast");
+    rival_slow = from_bitmap("./textures/rival_slow");
+    rival_medium = from_bitmap("./textures/rival_medium");
+    rival_fast = from_bitmap("./textures/rival_fast");
+    box_small = from_bitmap("./textures/box_small");
+    box_big = from_bitmap("./textures/box_big");
+    box_wide_small = from_bitmap("./textures/box_wide_small");
+    box_wide_big = from_bitmap("./textures/box_wide_big");
 }
 void textures::free() {
     // here we free all the textures
