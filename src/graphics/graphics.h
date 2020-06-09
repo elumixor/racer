@@ -56,10 +56,10 @@ struct Rect {
     Point top_left{};
     Point bottom_right{};
 
-    inline int top() const { return top_left.y; }
-    inline int bottom() const { return bottom_right.y; }
-    inline int left() const { return top_left.x; }
-    inline int right() const { return bottom_right.x; }
+    inline constexpr int top() const { return top_left.y; }
+    inline constexpr int bottom() const { return bottom_right.y; }
+    inline constexpr int left() const { return top_left.x; }
+    inline constexpr int right() const { return bottom_right.x; }
 
     inline void top_(int y) { top_left.y = y; }
     inline void bottom_(int y) { bottom_right.y = y; }

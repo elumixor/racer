@@ -10,7 +10,7 @@
 
 namespace scenes {
     class CarSelection : public scenes::Scene {
-
+        void on_update() override;
     };
 }
 
