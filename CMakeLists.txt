@@ -34,6 +34,7 @@ SET(SRC
         src/scenes/track/obstacles/obstacle.cpp src/scenes/track/obstacles/obstacle.h
         src/scenes/track/obstacles/box_obstacle.cpp src/scenes/track/obstacles/box_obstacle.h
         src/graphics/text/text.cpp src/graphics/text/text.h
+        lib/include/mzapo_parlcd.h src/graphics/text/label/label.cpp src/graphics/text/label/label.h
         )
 
 SET(MZAPO
@@ -49,7 +50,7 @@ SET(OBJS
 SET(LIB_HEADERS
         lib/include/mzapo_regs.h
         lib/include/mzapo_phys.h
-        lib/include/mzapo_parlcd.h)
+        )
 
 add_executable(racer
         ${OBJS} ${LIB_HEADERS}
@@ -65,7 +66,7 @@ SET_SOURCE_FILES_PROPERTIES(
         EXTERNAL_OBJECT true
         GENERATED true)
 
-SET(target_ip 192.168.202.213)
+SET(target_ip 192.168.202.211)
 SET(target_user root)
 execute_process(COMMAND whoami OUTPUT_VARIABLE target_dir)
 

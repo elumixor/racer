@@ -8,9 +8,19 @@
 #include <graphics.h>
 
 namespace text {
+    constexpr auto glyph_size = 8;
+
+    struct Style {
+        int font_size;
+        color::type color_outline;
+        color::type color_fill;
+    };
+
     void initialize();
+
     void free();
-    void render(const char *string, const Point &top_left, color::type color1, color::type color2, int size);
+
+    void render(const char *string, const Point &top_left, const text::Style& style);
 }
 
 #endif //RACER_TEXT_H

@@ -7,12 +7,11 @@
 
 namespace input {
     enum class keys {
-        w = 'w', a  = 'a', s = 's', d = 'd',
+        w = 'w', a  = 'a', s = 's', d = 'd', e = 'e',
         left, right, up, down, // these produce two keystrokes... (complicated)
-        escape = 27,
+        escape = 27, enter = 13,
         none = -1
     };
-
     bool get_key(keys key);
     void update();
     void initialize();

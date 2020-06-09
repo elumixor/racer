@@ -4,10 +4,10 @@
 
 #include <renderer/renderer.h>
 #include <c++/9/cstdio>
+#include <screen.h>
 #include "text.h"
 
 
-constexpr auto glyph_size = 8;
 constexpr auto num_letters = 'z' - 'a' + 1;
 constexpr auto num_digits = '9' - '0' + 1;
 constexpr auto num_special = 3; // '!' '.' '-'
@@ -57,19 +57,24 @@ void render_scaled_pixels(const Point *pixels, int length, int x, int y, color::
 
         // render scaled pixes, which is a rect
         for (int s_x = 0; s_x < size; ++s_x)
-            for (int s_y = 0; s_y < size; ++s_y)
-                renderer::set_pixel(p_x + s_x, p_y + s_y, color);
+            for (int s_y = 0; s_y < size; ++s_y) {
+                int x1 = p_x + s_x;
+                int y1 = p_y + s_y;
+
+                if (x1 >= 0 && x1 < screen::width && y1 >= 0 && y1 < screen::height)
+                    renderer::set_pixel(x1, y1, color);
+            }
     }
 }
 
-void render_glyph(char c, int x, int y, color::type color1, color::type color2, int size) {
+void render_glyph(char c, int x, int y, const text::Style &style) {
     auto g = glyphs + get_index(c);
 
-    render_scaled_pixels(g->pixels_color1, g->num_pixels_color1, x, y, color1, size);
-    render_scaled_pixels(g->pixels_color2, g->num_pixels_color2, x, y, color2, size);
+    render_scaled_pixels(g->pixels_color1, g->num_pixels_color1, x, y, style.color_outline, style.font_size);
+    render_scaled_pixels(g->pixels_color2, g->num_pixels_color2, x, y, style.color_fill, style.font_size);
 }
 
-void text::render(const char *string, const Point &top_left, color::type color1, color::type color2, int size) {
+void text::render(const char *string, const Point &top_left, const text::Style &style) {
     auto x = top_left.x;
     auto y = top_left.y;
     int i = 0;
@@ -82,11 +87,11 @@ void text::render(const char *string, const Point &top_left, color::type color1,
 
         if (*k == '\n') {
             i = 0;
-            y += size * glyph_size;
+            y += style.font_size * glyph_size;
             continue;
         }
 
-        render_glyph(*k, x + i * glyph_size * size, y, color1, color2, size);
+        render_glyph(*k, x + i * glyph_size * style.font_size, y, style);
         ++i;
     }
 }

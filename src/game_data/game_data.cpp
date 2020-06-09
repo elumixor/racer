@@ -7,6 +7,8 @@
 #include "game_data.h"
 #include "textures/textures.h"
 
+int game_data::score = 0;
+
 game_data::CarType game_data::selected_car = game_data::DefaultCar;
 const Texture *game_data::get_texture(game_data::CarType car_type) {
     switch (car_type) {

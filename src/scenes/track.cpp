@@ -21,6 +21,8 @@ void scenes::Track::on_init() {
 
     player->on_init();
     track_manager->on_init();
+
+    game_data::score = 0;
 }
 
 void scenes::Track::on_destroy() {

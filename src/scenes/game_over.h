@@ -9,8 +9,18 @@
 #include "scenes.h"
 
 namespace scenes {
-    class GameOver : public scenes::Scene {
-
+    class GameOver : public Scene {
+        enum Options {
+            retry,
+            change_car,
+            exit
+        };
+        Options focused_option{retry};
+//        const Label* title{nullptr};
+        void select_option();
+        void on_update() override;
+        void on_init() override;
+        void on_destroy() override;
     };
 }
 

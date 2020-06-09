@@ -14,22 +14,22 @@ BLACK_PIXEL = (0, 0, 0, 255)
 b = bytearray()
 
 for i in range(num_glyphs):
-    color1 = []
-    color2 = []
+    color_outline = []
+    color_fill = []
 
     for x in range(i * size, (i + 1) * size):
         for y in range(size):
             if pixels[x, y] == BLACK_PIXEL:
-                color1.append((x - i * size, y))
+                color_outline.append((x - i * size, y))
             elif pixels[x, y] == RED_PIXEL:
-                color2.append((x - i * size, y))
+                color_fill.append((x - i * size, y))
 
-    b += struct.pack('i', len(color1))
-    for x, y in color1:
+    b += struct.pack('i', len(color_outline))
+    for x, y in color_outline:
         b += struct.pack('ii', x, y)
 
-    b += struct.pack('i', len(color2))
-    for x, y in color2:
+    b += struct.pack('i', len(color_fill))
+    for x, y in color_fill:
         b += struct.pack('ii', x, y)
 
 with open(f"binary", "wb") as f:

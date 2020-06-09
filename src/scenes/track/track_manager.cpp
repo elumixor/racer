@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <printing.h>
+#include <c++/9/cmath>
 #include "track_manager.h"
 #include "../../io/screen.h"
 #include "../scenes.h"
@@ -13,22 +14,19 @@ Obstacle *current_obstacle{nullptr};
 TrackManager::TrackManager(const Player *player) : player{player} {}
 
 bool collide(const Rect &a, const Rect &b) {
-//    print((min(a.right(), b.right()) - max(a.left(), b.left())) >= 0, " ");
-//    print((min(a.bottom(), b.bottom()) - max(a.top(), b.top())) >= 0);
-//    print(a.bottom(), " ");
-//    print(b.bottom(), " ");
-//    print(a.top(), " ");
-//    print(b.top());
-
-
     return (min(a.right(), b.right()) - max(a.left(), b.left())) >= 0 &&
-            (min(a.bottom(), b.bottom()) - max(a.top(), b.top())) >= 0;
+           (min(a.bottom(), b.bottom()) - max(a.top(), b.top())) >= 0;
 }
+
+float distance{0};
 
 void TrackManager::on_update() {
     if (current_obstacle == nullptr) {
         current_obstacle = instantiate_obstacle();
     }
+
+    distance += player->speed;
+    game_data::score = (int) lround(distance / 5.f);
 
     current_obstacle->on_update();
 

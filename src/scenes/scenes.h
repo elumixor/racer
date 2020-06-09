@@ -36,7 +36,7 @@ namespace scene {
         load(instance);
     }
 
-    using StartingScene = scenes::MainMenu;
+    using StartingScene = scenes::GameOver;
 }
 
 
