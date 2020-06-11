@@ -28,6 +28,6 @@ a car and has to evade obstacles. Player scores points as he manages to stay on 
 ##### Architecture
 
 The program is written in C++, with parts of C, containing low-level board-interaction. 
-**[Architecture](https://github.com/elumixor/racer/docs/architecture.md)** was somewhat inspired by Unity and
+**[Architecture](./docs/architecture.md)** was somewhat inspired by Unity and
 OpenGL, those familiar with it might find some resemblance. 
-[(More in docs)](https://github.com/elumixor/racer/docs/architecture.md)
+[(More in docs)](./docs/architecture.md)
