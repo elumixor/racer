@@ -21,9 +21,9 @@ done through the console.
 
 ##### Vision
 
-**[Racer is a simple racing game](https://github.com/elumixor/racer/docs/vision.md)**, where the player controls
+**[Racer is a simple racing game](./docs/vision.md)**, where the player controls
 a car and has to evade obstacles. Player scores points as he manages to stay on the racing track and not crash.
-[(More in docs)](https://github.com/elumixor/racer/docs/vision.md)
+[(More in docs)](./docs/vision.md)
 
 ##### Architecture
 
