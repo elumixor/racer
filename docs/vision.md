@@ -5,7 +5,7 @@
 
 Player is controlling a car and has to evade obstacles on its path.
 
-![Game View](./docs/images/game_view.png)
+![Game View](./images/game_view.png)
 
 
 
