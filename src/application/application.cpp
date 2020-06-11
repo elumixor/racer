@@ -19,31 +19,35 @@ bool application::should_exit = false;
 
 
 void application::initialize() {
-    // seed random generator https://stackoverflow.com/a/13446015/4932128
+    // seed random generator, just for fun. https://stackoverflow.com/a/13446015/4932128
     srand((unsigned) time(nullptr));
 
+    // initialize submodules
     renderer::initialize();
     input::initialize();
     textures::initialize();
     text::initialize();
 
-    auto starting_scene = (scenes::Scene *) scene::get<scene::StartingScene>();
-    scene::load(starting_scene);
+    // load starting scene
+    scene::load<scenes::StartingScene>();
 }
 
 void application::process_logic() {
-    if (input::get_key(input::keys::escape))
+    // At any given point, we can exit by pressing escape key
+    if (input::key_pressed(input::Keys::escape))
         application::should_exit = true;
 
-    scene::current->on_update();
+    // Call update() on the current scene
+    scene::current->update();
 }
 
-void application::draw_frame() {
+void application::render_frame() {
+    // Delegates to renderer. Design choice
     renderer::render_frame();
 }
 
 void application::pull_events() {
-    // if key pressed, assign to io
+    // Delegates to input. Design choice
     input::update();
 }
 

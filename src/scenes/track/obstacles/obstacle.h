@@ -6,11 +6,10 @@
 #define RACER_OBSTACLE_H
 
 
-#include <component.h>
 #include <graphics.h>
 #include <game_data.h>
 
-class Obstacle : public Component {
+class Obstacle {
 protected:
     int line;
 public:
@@ -28,7 +27,8 @@ public:
     inline Obstacle(int line, float x, float speed, const Texture *texture, int width, int height) :
             line{line}, x{x}, speed{speed}, texture{texture}, width{width}, height{height} {}
 
-    void on_update() override;
+    virtual void update();
+    virtual ~Obstacle() = default;
     bool out_of_view() const;
 
     static Obstacle *from_type(game_data::ObstacleType type, float player_speed);

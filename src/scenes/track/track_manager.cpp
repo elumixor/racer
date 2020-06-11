@@ -9,7 +9,6 @@
 #include <c++/9/cstdio>
 #include <renderer/renderer.h>
 #include "track_manager.h"
-#include "../../io/screen.h"
 #include "../scenes.h"
 
 Obstacle *current_obstacle{nullptr};
@@ -24,10 +23,10 @@ bool collide(const Rect &a, const Rect &b) {
 float distance{0};
 Label *score_label;
 
-constexpr Rect score_rect{{screen::width - (game_data::TEXT_SCORE_TRACK.font_size * text::glyph_size * 3 + 10), 0},
-                          {screen::width,       game_data::TEXT_SCORE_TRACK.font_size * text::glyph_size + 10}};
+constexpr Rect score_rect{{game_data::SCREEN_WIDTH - (game_data::TEXT_SCORE_TRACK.font_size * text::glyph_size * 3 + 10), 0},
+                          {game_data::SCREEN_WIDTH,       game_data::TEXT_SCORE_TRACK.font_size * text::glyph_size + 10}};
 
-void TrackManager::on_update() {
+void TrackManager::update() {
     if (current_obstacle == nullptr) {
         current_obstacle = instantiate_obstacle();
     }
@@ -41,13 +40,12 @@ void TrackManager::on_update() {
     score_label->string = str;
 
     renderer::set_rect(score_rect, color::black);
-    score_label->render({screen::width, 5}, AnchorX::right, AnchorY::top);
+    score_label->render({game_data::SCREEN_WIDTH, 5}, AnchorX::right, AnchorY::top);
 
-    current_obstacle->on_update();
+    current_obstacle->update();
 
 
     if (current_obstacle->out_of_view()) {
-        current_obstacle->on_destroy();
         delete current_obstacle;
         current_obstacle = nullptr;
     } else if (collide(current_obstacle->get_collider(), player->get_collider())) {
@@ -68,13 +66,12 @@ void TrackManager::on_init() {
 Obstacle *TrackManager::instantiate_obstacle() const {
     auto obstacle_type = game_data::get_random_obstacle_type();
     auto obstacle = Obstacle::from_type(obstacle_type, player->speed);
-    obstacle->x = screen::width;
+    obstacle->x = game_data::SCREEN_WIDTH;
     return obstacle;
 }
 
 void TrackManager::on_destroy() {
     if (current_obstacle != nullptr) {
-        current_obstacle->on_destroy();
         delete current_obstacle;
         current_obstacle = nullptr;
     }

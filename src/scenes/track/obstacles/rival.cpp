@@ -3,7 +3,6 @@
 //
 
 #include <stdlib.h>
-#include <exceptions.h>
 #include "rival.h"
 
 constexpr game_data::CarType get_car_type(game_data::ObstacleType type) {
@@ -13,9 +12,8 @@ constexpr game_data::CarType get_car_type(game_data::ObstacleType type) {
         case game_data::ObstacleType::rival_medium:
             return game_data::CarType::medium;
         case game_data::ObstacleType::rival_fast:
-            return game_data::CarType::fast;
         default:
-            throw BaseException();
+            return game_data::CarType::fast;
     }
 }
 
@@ -47,7 +45,7 @@ Rival::Rival(game_data::ObstacleType type, float player_speed) :
         Obstacle{get_random_line(), 0, player_speed + get_speed(type), game_data::get_texture(type), get_width(type),
                  game_data::CAR_HEIGHT}, l{line}, behaviour{get_behaviour(line)} {
 }
-void Rival::on_update() {
+void Rival::update() {
     if (frames_from_last_change == 0) {
         frames_from_last_change = change_frame;
         change_line();
@@ -55,7 +53,7 @@ void Rival::on_update() {
 
     --frames_from_last_change;
 
-    Obstacle::on_update();
+    Obstacle::update();
 }
 void Rival::change_line() {
     if (behaviour == Behaviour::straight) return;

@@ -18,7 +18,7 @@ namespace scenes {
         Options focused_option{retry};
 //        const Label* title{nullptr};
         void select_option();
-        void on_update() override;
+        void update() override;
         void on_init() override;
         void on_destroy() override;
     };

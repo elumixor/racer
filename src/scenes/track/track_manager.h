@@ -6,18 +6,17 @@
 #define RACER_TRACK_MANAGER_H
 
 
-#include <component.h>
 #include "player.h"
 #include "obstacles/obstacle.h"
 
-class TrackManager : public Component {
+class TrackManager  {
     const Player *player; // will track current speed and pass it to constructed enemies.
 public:
     explicit TrackManager(const Player *player);
 
-    void on_init() override ;
-    void on_update() override;
-    void on_destroy() override;
+    void on_init() ;
+    void update();
+    void on_destroy();
 
     Obstacle *instantiate_obstacle() const;
 };

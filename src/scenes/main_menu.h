@@ -18,7 +18,7 @@ namespace scenes {
         };
         Options focused_option{start_game};
         void select_option();
-        void on_update() override;
+        void update() override;
         void on_init() override;
     };
 }

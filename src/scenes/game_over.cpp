@@ -5,7 +5,6 @@
 #include <game_data.h>
 #include <text/label/label.h>
 #include <input.h>
-#include <screen.h>
 #include <renderer/renderer.h>
 #include <c++/9/cstdio>
 #include "game_over.h"
@@ -38,7 +37,7 @@ void scenes::GameOver::select_option() {
 
 Label *score;
 
-void scenes::GameOver::on_update() {
+void scenes::GameOver::update() {
     renderer::clear_framebuffer(game_data::BACKGROUND_COLOR);
 
     auto retry = focused_option == GameOver::retry ? option_retry_highlighted : option_retry;
@@ -47,26 +46,26 @@ void scenes::GameOver::on_update() {
 
     auto top = game_data::TITLE_MARGIN_TOP;
 
-    title.render({screen::width / 2, game_data::TITLE_MARGIN_TOP}, AnchorX::center);
-    top += title.glyph_size() + game_data::SCORE_MARGIN;
+    title.render({game_data::SCREEN_WIDTH / 2, game_data::TITLE_MARGIN_TOP}, AnchorX::center);
+    top += title.style.glyph_size() + game_data::SCORE_MARGIN;
 
-    score->render({screen::width / 2, top}, AnchorX::center);
-    top += score->glyph_size() + game_data::OPTION_MARGIN;
+    score->render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
+    top += score->style.glyph_size() + game_data::OPTION_MARGIN;
 
-    retry.render({screen::width / 2, top}, AnchorX::center);
-    top += retry.glyph_size() + game_data::OPTION_MARGIN;
+    retry.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
+    top += retry.style.glyph_size() + game_data::OPTION_MARGIN;
 
-    change_car.render({screen::width / 2, top}, AnchorX::center);
-    top += change_car.glyph_size() + game_data::OPTION_MARGIN;
+    change_car.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
+    top += change_car.style.glyph_size() + game_data::OPTION_MARGIN;
 
-    exit.render({screen::width / 2, top}, AnchorX::center);
+    exit.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
 
-    if (input::get_key(input::keys::w) && focused_option > 0)
+    if (input::key_pressed(input::Keys::w) && focused_option > 0)
         focused_option = static_cast<Options>(focused_option - 1);
-    else if (input::get_key(input::keys::s) && focused_option < 2)
+    else if (input::key_pressed(input::Keys::s) && focused_option < 2)
         focused_option = static_cast<Options>(focused_option + 1);
 
-    else if (input::get_key(input::keys::enter) || input::get_key(input::keys::e))
+    else if (input::key_pressed(input::Keys::enter) || input::key_pressed(input::Keys::e))
         select_option();
 }
 void scenes::GameOver::on_init() {

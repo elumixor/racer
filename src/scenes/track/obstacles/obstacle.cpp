@@ -8,7 +8,7 @@
 #include "rival.h"
 #include "box_obstacle.h"
 
-void Obstacle::on_update() {
+void Obstacle::update() {
     x -= speed;
 
     render();

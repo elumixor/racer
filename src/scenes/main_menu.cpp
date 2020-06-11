@@ -11,7 +11,6 @@
 #include <c++/9/cstdio>
 #include <game_data.h>
 #include <text/label/label.h>
-#include <screen.h>
 
 constexpr auto title = Label("racer", game_data::TEXT_TITLE);
 constexpr auto option_start = Label("start game", game_data::TEXT_OPTION);
@@ -37,7 +36,7 @@ void scenes::MainMenu::select_option() {
 }
 
 
-void scenes::MainMenu::on_update() {
+void scenes::MainMenu::update() {
     renderer::clear_framebuffer(game_data::BACKGROUND_COLOR);
 
     auto start = focused_option == start_game ? option_start_highlighted : option_start;
@@ -45,23 +44,23 @@ void scenes::MainMenu::on_update() {
     auto exit = focused_option == MainMenu::exit ? option_exit_highlighted : option_exit;
 
     auto top = game_data::TITLE_MARGIN_TOP;
-    title.render({screen::width / 2, game_data::TITLE_MARGIN_TOP}, AnchorX::center);
+    title.render({game_data::SCREEN_WIDTH / 2, game_data::TITLE_MARGIN_TOP}, AnchorX::center);
 
-    top += title.glyph_size() + game_data::TITLE_MARGIN_BOTTOM;
-    start.render({screen::width / 2, top}, AnchorX::center);
+    top += title.style.glyph_size() + game_data::TITLE_MARGIN_BOTTOM;
+    start.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
 
-    top += start.glyph_size() + game_data::OPTION_MARGIN;
-    select.render({screen::width / 2, top}, AnchorX::center);
+    top += start.style.glyph_size() + game_data::OPTION_MARGIN;
+    select.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
 
-    top += select.glyph_size() + game_data::OPTION_MARGIN;
-    exit.render({screen::width / 2, top}, AnchorX::center);
+    top += select.style.glyph_size() + game_data::OPTION_MARGIN;
+    exit.render({game_data::SCREEN_WIDTH / 2, top}, AnchorX::center);
 
-    if (input::get_key(input::keys::w) && focused_option > 0)
+    if (input::key_pressed(input::Keys::w) && focused_option > 0)
         focused_option = static_cast<Options>(focused_option - 1);
-    else if (input::get_key(input::keys::s) && focused_option < 2)
+    else if (input::key_pressed(input::Keys::s) && focused_option < 2)
         focused_option = static_cast<Options>(focused_option + 1);
 
-    else if (input::get_key(input::keys::enter) || input::get_key(input::keys::e))
+    else if (input::key_pressed(input::Keys::enter) || input::key_pressed(input::Keys::e))
         select_option();
 }
 void scenes::MainMenu::on_init() {

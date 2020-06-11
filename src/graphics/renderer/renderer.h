@@ -9,14 +9,22 @@
 #include <graphics.h>
 
 namespace renderer {
+    /// Initializes framebuffer and setups low-lever lcd display registers.
     void initialize();
 
-    void set_pixel(int x, int y, color::type color);
+    /// Sets all framebuffer's pixels to the same (clear) color.
     void clear_framebuffer(color::type color = color::clear);
+
+    /// Sets a single pixel in framebuffer to the specified color.
+    void set_pixel(int x, int y, color::type color);
+
+    /// Sets a rectangle in framebuffer to the specified color.
     void set_rect(const Rect &rect, color::type color);
-    void set_glyph(char c, int x, int y, color::type color1, color::type color2, int size);
-    void set_text(const char *string, const Point &top_left, color::type color1, color::type color2, int size);
+
+    /// Renders current framebuffer's contents to display.
     void render_frame();
+
+    /// Clears display and frees framebuffer.
     void on_exit();
 }
 #endif //RACER_RENDERER_H

@@ -4,7 +4,6 @@
 
 #include "car_selection.h"
 #include <game_data.h>
-#include <screen.h>
 #include <renderer/renderer.h>
 #include <textures.h>
 #include <input.h>
@@ -19,7 +18,7 @@ constexpr auto fast = part * 3 + spacing;
 constexpr auto padding = 10;
 constexpr auto max_width = game_data::CAR_WIDTH_FAST; // and height
 
-constexpr auto top = screen::height / 2 - max_width / 2 - padding;
+constexpr auto top = game_data::SCREEN_HEIGHT / 2 - max_width / 2 - padding;
 constexpr auto bottom = top + max_width + 2 * padding;
 
 constexpr auto get_left(int l) { return l - max_width / 2 - padding; }
@@ -53,10 +52,9 @@ const Rect &selection_rect() {
         case game_data::CarType::medium:
             return rect_medium;
         case game_data::CarType::fast:
+        default:
             return rect_fast;
     }
-
-    throw InvalidArgumentException();
 }
 
 // Which we can pick based on the current selection
@@ -67,20 +65,19 @@ const Rect &inner_selection_rect() {
         case game_data::CarType::medium:
             return inner_medium;
         case game_data::CarType::fast:
+        default:
             return inner_fast;
     }
-
-    throw InvalidArgumentException();
 }
 
 // We also need top left points to render cars
-constexpr auto car_top = screen::height / 2 - game_data::CAR_HEIGHT / 2;
+constexpr auto car_top = game_data::SCREEN_HEIGHT / 2 - game_data::CAR_HEIGHT / 2;
 
 constexpr auto player_slow = Point{slow - game_data::CAR_WIDTH_SLOW / 2, car_top};
 constexpr auto player_medium = Point{medium - game_data::CAR_WIDTH_MEDIUM / 2, car_top};
 constexpr auto player_fast = Point{fast - game_data::CAR_WIDTH_FAST / 2, car_top};
 
-void scenes::CarSelection::on_update() {
+void scenes::CarSelection::update() {
     renderer::clear_framebuffer(game_data::BACKGROUND_COLOR);
 
     auto rect = selection_rect();
@@ -91,10 +88,10 @@ void scenes::CarSelection::on_update() {
     textures::player_medium->render(player_medium);
     textures::player_fast->render(player_fast);
 
-    if (input::get_key(input::keys::a) && game_data::selected_car > 0)
+    if (input::key_pressed(input::Keys::a) && game_data::selected_car > 0)
         game_data::selected_car = static_cast<game_data::CarType>(game_data::selected_car - 1);
-    else if (input::get_key(input::keys::d) && game_data::selected_car < 2)
+    else if (input::key_pressed(input::Keys::d) && game_data::selected_car < 2)
         game_data::selected_car = static_cast<game_data::CarType>(game_data::selected_car + 1);
-    else if (input::get_key(input::keys::enter) || input::get_key(input::keys::e))
+    else if (input::key_pressed(input::Keys::enter) || input::key_pressed(input::Keys::e))
         scene::load<Track>();
 }

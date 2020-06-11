@@ -60,7 +60,7 @@
 #define SERVOPS2_REG_PWM3_o             0x0018
 #define SERVOPS2_REG_PWM4_o             0x001C
 
-/* Simple audio PWM output */
+/* Simple audio PWM printing */
 
 #define AUDIOPWM_REG_BASE_PHYS 0x43c60000
 #define AUDIOPWM_REG_SIZE      0x4000

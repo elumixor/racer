@@ -27,15 +27,22 @@ namespace AnchorY {
     };
 }
 
+/// Label encapsulates rendering given text with given style.
 struct Label {
+    /// Text to be rendered
     const char *string;
+
+    /// Style to render with
     text::Style style;
 
-    inline int glyph_size() const { return style.font_size * text::glyph_size; }
-    inline int width() const { return glyph_size() * strlen(string); }
+    /// Length of the strings in pixels (wrt current style)
+    inline int width() const { return style.glyph_size() * strlen(string); }
 
+    /// Renders current label at position using specified anchoring within the string
+    /// which determines where does the *position* point to within this string.
     void render(const Point &position, AnchorX::AnchorX anchor_x = AnchorX::left, AnchorY::AnchorY anchor_y = AnchorY::top) const;
 
+    // constexpr everything!
     inline constexpr Label(const char *string, const text::Style &style) : string{string}, style{style} {}
 };
 

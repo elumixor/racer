@@ -72,18 +72,4 @@ struct Rect {
     inline Rect operator+(const Vector &translation) const { return {top_left + translation, bottom_right + translation}; }
 };
 
-struct Texture {
-    const Rect *rectangles;
-    const color::type *colors;
-    const int num_rectangles;
-public:
-    inline Texture(const Rect *rectangles, const color::type *colors, int num_rectangles) :
-            rectangles{rectangles}, colors{colors}, num_rectangles{num_rectangles} {}
-    void render(const Point &top_left) const;
-
-    ~Texture();
-};
-
-void render_text(const char *string, const Point &top_left, int size = 1);
-
 #endif //RACER_GRAPHICS_H

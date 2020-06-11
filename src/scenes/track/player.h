@@ -6,11 +6,10 @@
 #define RACER_PLAYER_H
 
 
-#include <component.h>
 #include <graphics.h>
 #include <game_data.h>
 
-class Player : public Component {
+class Player {
     float acceleration;
     const Texture *texture;
     int line{game_data::PLAYER_STARTING_LINE};
@@ -27,7 +26,7 @@ public:
             width{game_data::get_width(car_type)},
             speed{game_data::get_speed(car_type)} {}
 
-    void on_update() override;
+    void update();
 
 };
 

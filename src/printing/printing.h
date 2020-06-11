@@ -7,9 +7,6 @@
 
 #include <string>
 
-//template<typename T>
-//string to_string(const T &value);
-
 inline void print(const char *value) {
     printf("%s\n\r", value);
 }

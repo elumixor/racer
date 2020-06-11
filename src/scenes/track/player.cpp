@@ -6,10 +6,10 @@
 #include "player.h"
 #include "../../io/input.h"
 
-void Player::on_update() {
-    if (input::get_key(input::keys::w) && line > 0) {
+void Player::update() {
+    if (input::key_pressed(input::Keys::w) && line > 0) {
         --line;
-    } else if (input::get_key(input::keys::s) && line < 2) {
+    } else if (input::key_pressed(input::Keys::s) && line < 2) {
         ++line;
     }
 

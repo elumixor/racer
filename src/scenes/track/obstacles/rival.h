@@ -24,7 +24,7 @@ private:
     Behaviour behaviour;
 public:
     Rival(game_data::ObstacleType type, float player_speed);
-    void on_update() override;
+    void update() override;
     void change_line();
 
 };

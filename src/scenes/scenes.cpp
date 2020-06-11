@@ -10,6 +10,10 @@
 
 scenes::Scene *scene::current = nullptr;
 
+void scenes::Scene::update() {}
+void scenes::Scene::on_init() {}
+void scenes::Scene::on_destroy() {}
+
 namespace scene {
     template<>
     scenes::MainMenu *get<scenes::MainMenu>() {
@@ -36,10 +40,12 @@ namespace scene {
     }
 
     void load(scenes::Scene *new_scene) {
+        // call on_destroy on the currently loaded scene
         if (current != nullptr) {
             current->on_destroy();
         }
 
+        // load selected scene
         current = new_scene;
         current->on_init();
     }

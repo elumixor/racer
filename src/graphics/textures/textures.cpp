@@ -4,6 +4,7 @@
 
 #include <c++/9/cstdio>
 #include <printing.h>
+#include <renderer/renderer.h>
 #include "textures.h"
 
 const Texture *textures::player_slow;
@@ -17,8 +18,17 @@ const Texture *textures::box_big;
 const Texture *textures::box_wide_small;
 const Texture *textures::box_wide_big;
 
-const Texture *from_bitmap(const char *file_path) {
+const Texture *read_texture_file(const char *file_path) {
     auto ptr = fopen(file_path, "rb");
+
+    // Each Texture is an array of colored rectangles. We read the file as:
+    //
+    //   read number of rectangles
+    //   (for each rectangle):
+    //      read color
+    //      read rectangle (left, top, width, height)
+    //
+    // Format is different (i.e. from (top left point, right bottom point)) due to designer specification.
 
     unsigned char num_rectanles;
     int top, left, height, width;
@@ -51,16 +61,16 @@ const Texture *from_bitmap(const char *file_path) {
 
 void textures::initialize() {
     // here we initialize all textures (not that many) from files into memory
-    player_slow = from_bitmap("./textures/player_slow");
-    player_medium = from_bitmap("./textures/player_medium");
-    player_fast = from_bitmap("./textures/player_fast");
-    rival_slow = from_bitmap("./textures/rival_slow");
-    rival_medium = from_bitmap("./textures/rival_medium");
-    rival_fast = from_bitmap("./textures/rival_fast");
-    box_small = from_bitmap("./textures/box_small");
-    box_big = from_bitmap("./textures/box_big");
-    box_wide_small = from_bitmap("./textures/box_wide_small");
-    box_wide_big = from_bitmap("./textures/box_wide_big");
+    player_slow = read_texture_file("./textures/player_slow");
+    player_medium = read_texture_file("./textures/player_medium");
+    player_fast = read_texture_file("./textures/player_fast");
+    rival_slow = read_texture_file("./textures/rival_slow");
+    rival_medium = read_texture_file("./textures/rival_medium");
+    rival_fast = read_texture_file("./textures/rival_fast");
+    box_small = read_texture_file("./textures/box_small");
+    box_big = read_texture_file("./textures/box_big");
+    box_wide_small = read_texture_file("./textures/box_wide_small");
+    box_wide_big = read_texture_file("./textures/box_wide_big");
 }
 void textures::free() {
     // here we free all the textures
@@ -76,3 +86,16 @@ void textures::free() {
     delete box_wide_big;
 }
 
+
+void Texture::render(const Point &top_left) const {
+    for (int r{0}; r < num_rectangles; ++r) {
+        const Rect &rectangle = rectangles[r];
+        auto color = colors[r];
+        renderer::set_rect(rectangle + top_left, color);
+    }
+}
+
+Texture::~Texture() {
+    delete[] colors;
+    delete[] rectangles;
+}

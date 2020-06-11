@@ -6,8 +6,8 @@
 #define RACER_GAME_DATA_H
 
 #include <graphics.h>
-#include <exceptions.h>
 #include <text/text.h>
+#include <textures/textures.h>
 
 #define game_parameter constexpr auto
 
@@ -21,6 +21,9 @@ namespace game_data {
     };
 
     extern CarType selected_car;
+
+    game_parameter SCREEN_HEIGHT = 320;
+    game_parameter SCREEN_WIDTH = 480;
 
     game_parameter NUM_LINES = 3;
 
@@ -57,7 +60,7 @@ namespace game_data {
     game_parameter TEXT_TITLE = text::Style{6, color::black, color::red};
     game_parameter TEXT_OPTION = text::Style{4, color::black, color::red};
     game_parameter TEXT_OPTION_HIGHLIGHTED = text::Style{4, color::black, color::white};
-    game_parameter TEXT_SCORE_SMALL = text::Style{2, color::black, color::red};
+    game_parameter TEXT_SCORE_SMALL = text::Style{4, color::black, color::red};
     game_parameter TEXT_SCORE_TRACK = text::Style{2, color::white, color::black};
 
     game_parameter TITLE_MARGIN_TOP = 45;
@@ -75,10 +78,9 @@ namespace game_data {
             case CarType::medium:
                 return CAR_SPEED_MEDIUM;
             case CarType::fast:
+            default:
                 return CAR_SPEED_FAST;
         }
-
-        throw InvalidArgumentException("Invalid car type");
     }
 
     constexpr float get_acceleration(CarType type) {
@@ -88,10 +90,9 @@ namespace game_data {
             case CarType::medium:
                 return CAR_ACCELERATION_MEDIUM;
             case CarType::fast:
+            default:
                 return CAR_ACCELERATION_FAST;
         }
-
-        throw InvalidArgumentException("Invalid car type");
     }
     constexpr int get_width(CarType type) {
         switch (type) {
@@ -100,10 +101,9 @@ namespace game_data {
             case CarType::medium:
                 return CAR_WIDTH_MEDIUM;
             case CarType::fast:
+            default:
                 return CAR_WIDTH_FAST;
         }
-
-        throw InvalidArgumentException("Invalid car type");
     }
 
     enum class ObstacleType {
