@@ -15,7 +15,7 @@
 
 ##### About
 
-**Racer** is a course project for computer architectures course. This work aims to develop an application
+**Racer** is a course project for computer architecture course. This work aims to develop an application
 for [MicroZed](http://microzed.org/product/microzed) board. Due to remote development, user interaction is
 done through the console.
 
